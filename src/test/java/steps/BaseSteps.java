@@ -38,5 +38,7 @@ public class BaseSteps {
         return new JsonPath(responseString);
     }
 
-
+    public double randomNumber() {
+        return 20 + Math.random()*400;
+    }
 }

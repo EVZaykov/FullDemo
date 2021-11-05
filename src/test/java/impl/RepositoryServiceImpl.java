@@ -29,7 +29,7 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
 
         //ValidatableResponse response = postRequest("{\"name\":\"" + nameOfRepos + "\"}",URL);
         ValidatableResponse response = given().log().all().header("Authorization","Bearer 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")
-                .header("Content-Type","application/json").body("{\"name\":\""+ nameOfRepos +"\"}")
+                .header("Content-Type","application/json").body("{\"name\":\""+ nameOfRepos + randomNumber() +"\"}")
                 .post(URL).then()
                 .log().all();
 
