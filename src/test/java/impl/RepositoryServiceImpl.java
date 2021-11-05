@@ -27,16 +27,15 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
     public ValidatableResponse createRepository(String nameOfRepos, String varName) {
         String URL = testConfig.getURL() + GET_LIST_OF_REPOS;
 
-        //ValidatableResponse response = postRequest("{\"name\":\"" + nameOfRepos + "\"}",URL);
-        ValidatableResponse response = given().log().all().header("Authorization","Bearer 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")
-                .header("Content-Type","application/json").body("{\"name\":\""+ nameOfRepos + randomNumber() +"\"}")
-                .post(URL).then()
-                .log().all();
+        ValidatableResponse response = postRequest("{\"name\":\"" + nameOfRepos + "\"}",URL);
+        //ValidatableResponse response = given().log().all().header("Authorization","Bearer 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")
+        //        .header("Content-Type","application/json").body("{\"name\":\""+ nameOfRepos + randomNumber() +"\"}")
+        //        .post(URL).then()
+         //       .log().all();
 
         RUN_CONTEXT.put(varName,response);
         return response;
     }
-
 
 
 
@@ -46,7 +45,7 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
         String URL = testConfig.getURL() + "repos/" + testConfig.getOwnerOfRepository() + check_variable_in_string(nameOfRepos);
 
         ValidatableResponse validatableResponse = given().log().all()
-                .header("Authorization","Bearer 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")
+                .header("Authorization","Bearer " + testConfig.getToken())
                 .header("Content-Type","application/json")
                 .delete(URL).then()
                 .log().all();
@@ -60,7 +59,7 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
         String URL = testConfig.getURL() + url;
         List<Repository> repositories = new ArrayList<>();
 
-        ValidatableResponse validatableResponse = given().log().all().header("Authorization","Bearer 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").header("Content-Type","application/json")
+        ValidatableResponse validatableResponse = given().log().all().header("Authorization","Bearer " + testConfig.getToken()).header("Content-Type","application/json")
                 .get(URL).then()
                 .log().all();
 
