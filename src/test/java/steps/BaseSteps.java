@@ -1,6 +1,7 @@
 package steps;
 
 
+import config.TestConfig;
 import io.qameta.allure.Allure;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -13,12 +14,14 @@ import static io.restassured.RestAssured.given;
 @Log4j2
 public class BaseSteps {
 
+    TestConfig testConfig = new TestConfig();
+
     public ValidatableResponse postRequest(String body, String myPath) {
         if(body == null || body.isEmpty()) {
             body = "{}";
         }
         log.info("body: " + body);
-        ValidatableResponse response = given().log().all().body(body).header("Authorization","Bearer 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").contentType("application/json;charset=UTF-8").post(myPath).then().log().all();
+        ValidatableResponse response = given().log().all().body(body).header("Authorization","Bearer " + testConfig.getToken()).contentType("application/json;charset=UTF-8").post(myPath).then().log().all();
         log.info(String.format("URL for request : \"%s\"", myPath));
         //log.info(response.asString());
          //Allure.step("response:\n" + response.asString());
