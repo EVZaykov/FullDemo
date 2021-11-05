@@ -21,7 +21,7 @@ Feature: MaxToTo
     #  | name      | EV1333                                                     |
     #  | full_name | EVZaykov/EV1333                                            |
     #  | url       | https://api.github.com/repos/EVZaykov/EV1333               |
-    #  | keys_url  | https://api.github.com/repos/EVZaykov/EV1333/keys{/key_id} |
+
 
 
 
