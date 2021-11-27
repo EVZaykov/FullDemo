@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import static io.restassured.RestAssured.given;
 
 @Log4j2
-public class BaseSteps {
+public class APIBaseSteps {
 
     TestConfig testConfig = new TestConfig();
 

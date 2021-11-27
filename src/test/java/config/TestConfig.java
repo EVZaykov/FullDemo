@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class TestConfig {
-    String token = "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";
+    String token = "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";
     String URL = "https://api.github.com/";
     String ownerOfRepository = "EVZaykov/";
 }

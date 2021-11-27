@@ -1,4 +1,4 @@
-package steps;
+package steps.API;
 
 
 import impl.RepositoryServiceImpl;
@@ -19,7 +19,7 @@ import static context.RunContext.RUN_CONTEXT;
 import static helpers.CheckVariable.check_variable_in_string;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class RepositoryMyStepdefs extends BaseSteps {
+public class RepositoryMyStepdefs extends APIBaseSteps {
 
     RepositoryService repositoryService = new RepositoryServiceImpl();
 

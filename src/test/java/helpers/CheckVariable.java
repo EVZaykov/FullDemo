@@ -4,12 +4,6 @@ import static context.RunContext.RUN_CONTEXT;
 
 public class CheckVariable {
 
-
-    //public static void main(String[] args) {
-    //    check_variable_in_string("https://api.github.com/repos/EVZaykov/${nameOfRepos}/keys{/key_id}");
-    //}
-
-
     public static Object check_variable_in_string(Object fullString) {
         String argumentToString = fullString.toString();
         if(argumentToString.contains("${")) {

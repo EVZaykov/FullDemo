@@ -5,7 +5,7 @@ import io.restassured.response.ValidatableResponse;
 import lombok.extern.log4j.Log4j2;
 import models.Repository;
 import service.RepositoryService;
-import steps.BaseSteps;
+import steps.API.APIBaseSteps;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import static helpers.CheckVariable.check_variable_in_string;
 import static io.restassured.RestAssured.given;
 
 @Log4j2
-public class RepositoryServiceImpl extends BaseSteps implements RepositoryService {
+public class RepositoryServiceImpl extends APIBaseSteps implements RepositoryService {
 
 
     TestConfig testConfig = new TestConfig();
@@ -24,7 +24,7 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
 
 
     @Override
-    public ValidatableResponse createRepository(String nameOfRepos, String varName) {
+    public ValidatableResponse createRepository(String nameOfRepos) {
         String URL = testConfig.getURL() + GET_LIST_OF_REPOS;
 
         ValidatableResponse response = postRequest("{\"name\":\"" + nameOfRepos + "\"}",URL);
@@ -33,14 +33,13 @@ public class RepositoryServiceImpl extends BaseSteps implements RepositoryServic
         //        .post(URL).then()
          //       .log().all();
 
-        RUN_CONTEXT.put(varName,response);
         return response;
     }
 
 
 
     @Override
-    public ValidatableResponse deleteRepository(Object nameOfRepos,String varName) {
+    public ValidatableResponse deleteRepository(String nameOfRepos,String varName) {
 
         String URL = testConfig.getURL() + "repos/" + testConfig.getOwnerOfRepository() + check_variable_in_string(nameOfRepos);
 
