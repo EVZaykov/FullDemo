@@ -1,8 +1,8 @@
-package steps;
+package steps.API;
 
 
 import config.TestConfig;
-import io.qameta.allure.Allure;
+//import io.qameta.allure.Allure;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -31,8 +31,8 @@ public class BaseSteps {
     public Response getRequest(RequestSpecification specification, String url) {
         Response response = specification.get(url);
         log.info(String.format("URL for request : \"%s\"", url));
-        Allure.step(String.format("URL for request : \"%s\"", url));
-        Allure.step("response:\n" + response.asString());
+        //Allure.step(String.format("URL for request : \"%s\"", url));
+        //Allure.step("response:\n" + response.asString());
         return response;
     }
 

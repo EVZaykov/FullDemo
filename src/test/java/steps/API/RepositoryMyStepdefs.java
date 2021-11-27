@@ -7,6 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.ValidatableResponse;
 import models.Repository;
+
+
 import org.junit.Assert;
 import service.RepositoryService;
 
@@ -29,7 +31,8 @@ public class RepositoryMyStepdefs extends BaseSteps {
 
     @Given("User creates repository with name {string} and saves response to var {string}")
     public void create_repository_and_save_response_to_var(String url, String varName) {
-        ValidatableResponse response = repositoryService.createRepository(url,varName);
+        ValidatableResponse response = repositoryService.createRepository(url);
+        RUN_CONTEXT.put(varName,response);
 
         //ValidatableResponse createRepository = repositoryService.createRepository(url,varName);
     }
@@ -39,13 +42,12 @@ public class RepositoryMyStepdefs extends BaseSteps {
         ValidatableResponse validatableResponse = RUN_CONTEXT.get(varName,ValidatableResponse.class);
         int actualStatus = validatableResponse.extract().statusCode();
         int expectStatus = Integer.parseInt(status);
-        Assert.assertEquals(actualStatus,expectStatus);
+        Assert.assertEquals(expectStatus,actualStatus);
     }
 
     @Given("User deletes repository with name {string} and saves response to var {string}")
     public void delete_repository_with_name(String nameOfRepos,String varName) {
-
-        repositoryService.deleteRepository(check_variable_in_string(nameOfRepos),varName);
+        repositoryService.deleteRepository(nameOfRepos,varName);
     }
 
     @Given("User gets response {string} and checks value form JsonPath {string} ER {string}")
@@ -66,7 +68,9 @@ public class RepositoryMyStepdefs extends BaseSteps {
     public void user_gets_value_from_json_path_from_response_and_saves_to_var(String jsonPath1, String varName, String newVar) {
         ValidatableResponse response = RUN_CONTEXT.get(varName,ValidatableResponse.class);
         Object value = response.extract().body().jsonPath().get(jsonPath1);
+        System.out.println("----------------------------------------"+ value);
         RUN_CONTEXT.put(newVar,value);
+        System.out.println("----------------------------------------"+ RUN_CONTEXT.get(newVar));
     }
 
 
